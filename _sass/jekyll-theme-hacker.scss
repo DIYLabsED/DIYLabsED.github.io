@@ -150,7 +150,11 @@ dt {
 }
 
 ul li {
-  list-style-image:url('../images/bullet.png');
+  color:#b5e853
+}
+
+ol li {
+  color:#aa759f
 }
 
 blockquote {
@@ -237,6 +241,11 @@ hr {
 .btn-github .icon {
   opacity: 0.6;
   background: url("../images/blacktocat.png") 0 0 no-repeat;
+}
+
+.btn-email .icon {
+  opacity: 0.6;
+  background: url("../images/bullet.png") 0 0 no-repeat;
 }
 
 /* Links
