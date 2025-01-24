@@ -20,6 +20,7 @@
 
 title: One Website To Rule Them All
 email: nomailplease@nocontact.com
+author: DIY Labs
 description: >- # this means to ignore newlines until "baseurl:"
   Hello! This little piece of text is supposed to tell you what this site is.
 baseurl: "" # the subpath of your site, e.g. /blog
