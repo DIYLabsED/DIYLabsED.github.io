@@ -35,19 +35,17 @@
         {{ content }}
       </section>
     </div>
-
     <div class="highlighted-posts">
       {% assign latest_posts = site.posts | slice: 0, 2 %}
       {% for post in latest_posts %}
       <article class="highlighted-post">
           <a href="{{ site.baseurl }}{{ post.url }}">
-              <img src="{{ post.cover_image }}" alt="Cover Image">
+              <img src="{{ post.cover_image | default: '/post-covers/default.png' }}" alt="Cover Image">
               <h2>{{ post.title }}</h2>
           </a>
       </article>
       {% endfor %}
-  </div>
-  
+  </div>  
         
   </body>
 </html>

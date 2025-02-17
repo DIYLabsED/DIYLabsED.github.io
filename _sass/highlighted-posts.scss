@@ -1,7 +1,7 @@
 .highlighted-posts {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    justify-content: center; /* Center the content */
+    gap: 10px; /* Smaller gap between the posts */
     margin-bottom: 20px;
 }
 
@@ -12,15 +12,17 @@
     align-items: center;
     text-align: center;
     border: 2px solid #333;
-    padding: 20px;
+    padding: 10px; /* Reduced padding to minimize spacing */
     border-radius: 15px;
     overflow: hidden;
+    max-width: 300px; /* Ensure container doesn't exceed image size */
 }
 
 .highlighted-post img {
     border-radius: 15px;
-    width: 100%;
-    height: auto;
+    width: 100%; /* Use full width of container */
+    height: 200px; /* Set the desired height */
+    object-fit: cover; /* Ensure the image scales properly */
 }
 
 .highlighted-post h2 {
