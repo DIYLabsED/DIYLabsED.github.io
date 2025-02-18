@@ -1,55 +1,75 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     {% include head-custom.html %}
-
-{% seo %}
-  </head>
-
-  <body>
-
+    {% seo %}
+</head>
+<body>
     <header>
-      <div class="container">
-        <a id="a-title" href="{{ '/' | relative_url }}">
-          <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        </a>
-        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
-
-        <section id="downloads">
-          {% if site.show_downloads %}
-            <a href="{{ site.github.zip_url }}" class="btn">Download as .zip</a>
-            <a href="{{ site.github.tar_url }}" class="btn">Download as .tar.gz</a>
-          {% endif %}
-          <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-          <a href="mailto:{{site.email }}" class="btn btn-mail"><span class="icon"></span>Contact me</a>
-        </section>
-      </div>
+        <div class="container">
+            <a id="a-title" href="{{ '/' | relative_url }}">
+                <h1>{{ site.title | default: site.github.repository_name }}</h1>
+            </a>
+            <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+            <section id="downloads">
+                {% if site.show_downloads %}
+                <a href="{{ site.github.zip_url }}" class="btn">Download as .zip</a>
+                <a href="{{ site.github.tar_url }}" class="btn">Download as .tar.gz</a>
+                {% endif %}
+                <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+                <a href="mailto:{{ site.email }}" class="btn btn-mail"><span class="icon"></span>Contact me</a>
+            </section>
+        </div>
     </header>
 
     <div class="container">
-      <section id="main_content">
-        {{ content }}
-      </section>
+        <section id="main_content">
+            {{ content }}
+        </section>
+
+        {% if page.url == "/" %}
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <h1 class="centered-h1">Projects</h1>
+            <div class="highlighted-projects">
+                {% for project in site.projects %}
+                <article class="highlighted-project">
+                    <a href="{{ site.baseurl }}{{ project.url }}">
+                        <img src="{{ project.cover_image | default: '/project-covers/default.png' }}" alt="Cover Image">
+                        <h2><a href="{{ site.baseurl }}{{ project.url }}">{{ project.title }}</a></h2>
+                    </a>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Latest Blog Posts Section -->
+        <section class="posts-section">
+            <h1 class="centered-h1">Latest Blog Posts</h1>
+            <div class="highlighted-posts">
+                {% assign latest_posts = site.posts | slice: 0, 2 %}
+                {% for post in latest_posts %}
+                <article class="highlighted-post">
+                    <a href="{{ site.baseurl }}{{ post.url }}">
+                        <img src="{{ post.cover_image | default: '/post-covers/default.png' }}" alt="Cover Image">
+                    </a>
+                    <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+                    <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+                </article>
+                {% endfor %}
+            </div>
+
+            <div class="button-container">
+              <a href="{{ site.baseurl }}/blogs" class="btn">All blogs</a>
+            </div>       
+
+          </section>
+        {% endif %}
     </div>
 
-    {% unless page.layout == "post" %}
-    <div class="highlighted-posts">
-        {% assign latest_posts = site.posts | slice: 0, 2 %}
-        {% for post in latest_posts %}
-        <article class="highlighted-post">
-            <a href="{{ site.baseurl }}{{ post.url }}">
-                <img src="{{ post.cover_image | default: '/post-covers/default.png' }}" alt="Cover Image">
-                <h2>{{ post.title }}</h2>
-                <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
-            </a>
-        </article>
-        {% endfor %}
-    </div>
-    {% endunless %}
-        
-  </body>
+</body>
 </html>

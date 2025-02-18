@@ -281,3 +281,10 @@ a {
 .centered-text {
   text-align: center;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-top: 20px; /* Optional: Add space above the button */
+}

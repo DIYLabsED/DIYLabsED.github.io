@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+
+{% seo %}
+  </head>
+  <body>
+
+    <header>
+        <div class="container">
+            <a id="a-title" href="{{ '/' | relative_url }}">
+                <h1>{{ page.title | default: Project }}</h1>
+            </a>
+            <h2>{{ page.description | default: Description }}</h2>
+                <a href="{{ page.github-repo}}" class="btn btn-github"><span class="icon"></span>Open GitHub repository</a>
+            </section>
+        </div>
+    </header>
+
+        <!-- Display Blog Posts Assigned to the Project -->
+        <section class="project-posts">
+            <h2 class="centered-h1">Latest Blog Posts</h2>
+            <div class="highlighted-posts">
+                {% assign project_tag = page.title | downcase | replace: ' ', '-' %}
+                {% assign related_posts = site.posts | where_exp: "post", "post.tags contains project_tag" %}
+                {% if related_posts.size > 0 %}
+                    {% for post in related_posts %}
+                    <article class="highlighted-post">
+                        <a href="{{ site.baseurl }}{{ post.url }}">
+                            <img src="{{ post.cover_image | default: '/post-covers/default.png' }}" alt="Cover Image">
+                        </a>
+                        <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+                        <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+                    </article>
+                    {% endfor %}
+                {% else %}
+                    <p>No blog posts found for this project.</p>
+                {% endif %}
+            </div>
+        
+  </body>
+</html>
